@@ -1,4 +1,5 @@
 // modules
+// I changed !
 var childProcess = require('child_process')
   , express = require('express')
   , http = require('http')
@@ -75,7 +76,7 @@ http.createServer(function (req, res) {
 }).listen(configServer.streamPort, function () {
   console.log('Listening for video stream on port ' + configServer.streamPort);
 
-  // Run do_ffmpeg.sh from node                                                   
+  // Run do_ffmpeg.sh from node
   childProcess.exec('../../bin/do_ffmpeg.sh');
 });
 
