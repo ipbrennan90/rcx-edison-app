@@ -6,7 +6,7 @@ var childProcess = require('child_process')
   , morgan = require('morgan')
   , ws = require('ws')
   , path = require('path')
-  , bodyParser = require('body-parser');;
+  , bodyParser = require('body-parser');
 
 // configuration files
 var configServer = require('./lib/config/server');
@@ -21,7 +21,6 @@ app.set('view engine', 'jade');
 app.use(express.static(configServer.staticFolder));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('dev'));
