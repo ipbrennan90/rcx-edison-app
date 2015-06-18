@@ -10,10 +10,11 @@ var configServer = require('./lib/config/server');
 
 // app parameters
 var app = express();
+var routes = require('./routes/index');
 app.set('port', configServer.httpPort);
 app.use(express.static(configServer.staticFolder));
 app.use(morgan('dev'));
-
+app.use('/', routes);
 // serve index
 require('./lib/routes').serveIndex(app, configServer.staticFolder);
 
