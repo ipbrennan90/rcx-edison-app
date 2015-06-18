@@ -10,8 +10,8 @@ var decoder = {'keyDownDecoder' : {'87':'w', '65':'a', '83':'s', '68':'d', '69':
 
 $(document).ready(function(){
   var wsUrl = 'ws://edison.local:8084/';
-  var canvas = $('#canvas-video');
-  var ctx = canvas[0].getContext('2d');
+  var canvas = document.getElementById('canvas-video');
+  var ctx = canvas.getContext('2d');
   ctx.fillStyle = '#333';
   ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
   var client = new WebSocket(wsUrl);
