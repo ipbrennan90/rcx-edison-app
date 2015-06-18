@@ -4,13 +4,14 @@ html
     meta(charset="utf-8")
     meta(name="viewport" content="initial-scale=1")
     title= title
-    script(src="/jsmpg.js")
+    script(src="server/public/javascripts/jsmpg.js")
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/jquery.js')
-    script(src = '/javascripts/global.js')
+    script(src = 'server/public/javascripts/global.js')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     script(src='/bootstrap/js/bootstrap.min.js')
   body
     block content
+      h1 = title
       div(class="container")
         canvas(id="canvas-video" width="640" height="480")
