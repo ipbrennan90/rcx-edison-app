@@ -4,14 +4,16 @@ var childProcess = require('child_process')
   , express = require('express')
   , http = require('http')
   , morgan = require('morgan')
-  , ws = require('ws');
+  , ws = require('ws')
+  , path = require('path')
+  , bodyParser = require('body-parser');;
 
 // configuration files
 var configServer = require('./lib/config/server');
 
 // app parameters
 var app = express();
-var routes = require('./routes/index');
+var routes = require('/routes/index');
 app.set('port', configServer.httpPort);
 app.use(express.static(configServer.staticFolder));
 app.use(morgan('dev'));
