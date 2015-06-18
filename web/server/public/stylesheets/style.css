@@ -1,0 +1,29 @@
+body {
+
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('../images/RCX-background.jpg');
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+a {
+  color: #00B7FF;
+}
+
+div.rcx_video_stream {
+  position: relative;
+  background: "black";
+  margin-top: -100px;
+}
+
+.container {
+  margin-top: 10%;
+  text-align: center;
+}
+
+#canvas-video {
+  width: 640px;
+  height: 480px;
+  border: 1px solid #ccc;
+}

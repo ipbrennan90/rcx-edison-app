@@ -82,4 +82,10 @@ http.createServer(function (req, res) {
   childProcess.exec('../../bin/do_ffmpeg.sh');
 });
 
+app.post('http://localhost:8080/', function(req, res){
+  console.log(req.body);
+  res.send(200);
+
+})
+
 module.exports.app = app;
