@@ -6,7 +6,8 @@ var childProcess = require('child_process')
   , morgan = require('morgan')
   , ws = require('ws')
   , path = require('path')
-  , bodyParser = require('body-parser');
+  , bodyParser = require('body-parser')
+  , favicon = require('serve-favicon');;
 
 // configuration files
 var configServer = require('./lib/config/server');
