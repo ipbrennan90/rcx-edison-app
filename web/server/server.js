@@ -15,7 +15,15 @@ var configServer = require('./lib/config/server');
 var app = express();
 var routes = require('./routes/index');
 app.set('port', configServer.httpPort);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
 app.use(express.static(configServer.staticFolder));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(morgan('dev'));
 app.use('/', routes);
 // serve index
