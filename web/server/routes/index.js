@@ -46,7 +46,7 @@ router.get('/', function(req, res, next) {
 }).post('/', function(req, res) {
   console.log(req.body.message)
   var PORT = 2000
-  var HOST = '192.168.1.2'
+  var HOST = '192.168.1.153'
 
   var dgram = require('dgram')
   var message = new Buffer('*OPEN* ' + req.body.message + '\n*CLOS*')
