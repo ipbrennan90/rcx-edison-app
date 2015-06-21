@@ -44,12 +44,13 @@ router.get('/', function(req, res, next) {
   // // res.send();/
 
 }).post('/', function(req, res) {
-  console.log(req.body.message)
+  // console.log(req.body.message)
   var PORT = 2000
-  var HOST = '192.168.1.153'
+  var HOST = '192.168.130.222'
 
   var dgram = require('dgram')
   var message = new Buffer('*OPEN* ' + req.body.message + '\n*CLOS*')
+  console.log(message)
   var client = dgram.createSocket('udp4');
   client.send(message, 0, message.length, PORT, HOST, function(err, bytes){
     if(err) throw err;
