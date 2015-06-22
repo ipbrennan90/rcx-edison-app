@@ -22,3 +22,7 @@ a {
   height: 480px;
   border: 1px solid #ccc;
 }
+
+.blur {
+  filter: blur5px;
+}
