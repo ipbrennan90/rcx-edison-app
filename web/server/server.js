@@ -7,7 +7,8 @@ var childProcess = require('child_process')
   , ws = require('ws')
   , path = require('path')
   , bodyParser = require('body-parser')
-  , favicon = require('serve-favicon');;
+  , favicon = require('serve-favicon')
+  , pg = require('pg');
 
 // configuration files
 var configServer = require('./lib/config/server');
@@ -95,5 +96,21 @@ app.post('http://localhost:8080/', function(req, res){
   res.send(200);
 
 })
+//database connection
+var connString = "postgres:@localhost/rcx";
 
+var client = new pg.Client(connString);
+client.connect(function(err){
+  if(err){
+    return console.error('could not connect to postgres', err);
+  }
+  client.query('SELECT NOW() AS "theTime"', function(err, result){
+    if(err){
+      return console.error('error running query', err);
+    }
+    console.log("PostgreSQL is connected: ", result.rows[0].theTime);
+    client.end
+  });
+
+});
 module.exports.app = app;

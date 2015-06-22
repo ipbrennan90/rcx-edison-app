@@ -1,5 +1,5 @@
 {
-  "name": "edi-cam",
+  "name": "rcx-app",
   "private": true,
   "scripts": {
     "start": "node server.js"
@@ -16,6 +16,7 @@
     "monk": "*",
     "serve-favicon": "~2.2.1",
     "http":"~0.0.0",
-    "bcrypt-nodejs": "~0.0.3"
+    "bcrypt-nodejs": "~0.0.3",
+    "pg":"~4.3.0"
   }
 }
