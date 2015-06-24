@@ -56,7 +56,7 @@ a {
   z-index: 1;
 }
 
-.user-sign-up{
+.user-sign-up, .user-sign-in{
   height: auto;
   position: absolute;
   margin-left: -220px;

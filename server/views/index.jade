@@ -29,4 +29,10 @@ html
           div(class="form-group")
             input(type="password" id="password-confirmation" class="form-control" placeholder="Password Confirmation")
           button(type="submit" name="commit" class="add-user btn btn-success")="Submit"
-      
+      div(class="user-sign-in col-sm-4")
+        form(name = "user-login" action = "")
+          div(class="form-group")
+            input(type="text" id="username_login" class="form-control"   name='username' placeholder="Username")
+          div(class="form-group")
+            input(type="text" id="email_login" class="form-control"  name='email' placeholder="Email")
+          button(type="submit" name="login" class="login-user btn btn-success")="Login"

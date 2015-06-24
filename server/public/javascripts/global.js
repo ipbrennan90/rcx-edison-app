@@ -27,10 +27,17 @@ $(document).ready(function(){
 
   $('body').children(':not(.user-options)').toggleClass('blur');
   $('.user-sign-up').hide();
+  $('.user-sign-in').hide();
   $('.sign-up').on('click', function () {
     $('.user-options').fadeOut("easeOutCubic", function(){
       $('.user-sign-up').toggleClass('blur');
       $('.user-sign-up').fadeIn("easeInCubic");
+    });
+  });
+  $('.sign-in').on('click', function () {
+    $('.user-options').fadeOut("easeOutCubic", function(){
+      $('.user-sign-in').toggleClass('blur');
+      $('.user-sign-in').fadeIn("easeInCubic");
     });
   });
   $('.add-user').on('click', function (e) {
