@@ -28,6 +28,7 @@ $(document).ready(function(){
   $('body').children(':not(.user-options)').toggleClass('blur');
   $('.user-sign-up').hide();
   $('.user-sign-in').hide();
+  $('#canvas-video').hide();
   $('.sign-up').on('click', function () {
     $('.user-options').fadeOut("easeOutCubic", function(){
       $('.user-sign-up').toggleClass('blur');
@@ -68,6 +69,50 @@ $(document).ready(function(){
 
 
   })
+
+  $('.login-user').on('click', function(e){
+    var username = $('input#username_login').val()
+    console.log(username)
+    var password = $('input#password_login').val()
+    $.ajax({
+      type: "POST",
+      url: "/signin",
+      data: {"loginuser":{"username":username, "password":password}},
+      statusCode: {
+        512:function(){
+          alert("Wrong Password")
+        },
+        513:function(){
+          $('.user-sign-in').fadeOut("easeOutCubic", function(){
+            $('.user-sign-up').toggleClass('blur');
+            $('.user-sign-up').fadeIn("easeInCubic");
+          });
+        }
+      },
+      success: function(data){
+        if(data){
+          alert(data.success)
+        }
+        $('.user-sign-in').fadeOut("easeOutCubic", function () {
+          $('body').children(':not(.user-options)').toggleClass('blur');
+        });
+      },
+      error: function(request, status, errorThrown){
+        if(errorThrown){
+          if(errorThrown == "Insufficient Storage"){
+            alert("Your Dad didn't love you, make an account")
+          }
+        }
+      }
+    });
+    e.preventDefault()
+  })
+
+  $('.return-to-login').on('click', function(){
+    $('.user-sign-up').fadeOut("easeOutCubic", function(){
+      $('.user-sign-in').fadeIn("easeInCubic");
+    });
+  });
   function waitThenPost(commandValue){
     console.log(commandValue)
     console.log('post fired')

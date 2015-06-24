@@ -67,3 +67,7 @@ a {
   text-align: center;
   z-index: 1;
 }
+
+.sign-up-btn-group {
+  margin-left: 33%;
+}
