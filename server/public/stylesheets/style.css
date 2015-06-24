@@ -1,19 +1,31 @@
-body {
-
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url('../images/RCX-background.jpg');
-  background-size: 100% 100%;
-  background-attachment: fixed;
+html, body, div
+{
+    height: 100%;
+    width: 100%;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 
 a {
   color: #00B7FF;
 }
 
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  margin-top: 0;
+  background-image: url('../images/offroad-racing.jpg');
+  background-size: cover;
+
+}
+
 
 .container {
-  margin-top: 10%;
+  z-index: 0;
+  left: 0;
+  right: 0;
   text-align: center;
 }
 
@@ -24,5 +36,34 @@ a {
 }
 
 .blur {
-  filter: blur5px;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.user-options{
+  height: auto;
+  position: absolute;
+  width: 210px;
+  margin-left: -105px;
+  left: 50%;
+  right: 50%;
+  top: 300px  ;
+  display: block;
+  text-align: center;
+  z-index: 1;
+}
+
+.user-sign-up{
+  height: auto;
+  position: absolute;
+  margin-left: -220px;
+  left: 50%;
+  right: 50%;
+  top: 100px  ;
+  display: block;
+  text-align: center;
+  z-index: 1;
 }

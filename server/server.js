@@ -16,6 +16,7 @@ var configServer = require('./lib/config/server');
 // app parameters
 var app = express();
 var routes = require('./routes/index');
+var newUser = require('./routes/newuser')
 app.set('port', configServer.httpPort);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('dev'));
 app.use('/', routes);
+app.use('/newuser', newUser)
 // serve index
 require('./lib/routes').serveIndex(app, configServer.staticFolder);
 

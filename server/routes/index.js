@@ -1,6 +1,8 @@
 var express = require('express');
 var dgram = require('dgram')
 var router = express.Router();
+var bcrypt = require('bcrypt');
+var current_user;
 
 
 
@@ -57,6 +59,8 @@ router.get('/', function(req, res, next) {
   });
   res.end()
 });
+
+
 
 
 module.exports = router;
