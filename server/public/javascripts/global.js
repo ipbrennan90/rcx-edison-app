@@ -60,6 +60,21 @@ $(document).ready(function(){
 
 
   })
+  $('.login-user').on('click', function(e){
+    var username = $('.input#username_login').val()
+    var password = $('.input#password_login').val()
+    $.ajax({
+      type: "POST",
+      url: "/signin",
+      data: {"username":username, "password":password},
+      success: function(){
+        $('.user-sign-in').fadeOut("easeOutCubic", function () {
+          $('body').children(':not(.user-options)').toggleClass('blur');
+        });
+      }
+    });
+    e.preventDefault()
+  })
   function waitThenPost(commandValue){
     console.log(commandValue)
     console.log('post fired')

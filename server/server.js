@@ -8,7 +8,11 @@ var childProcess = require('child_process')
   , path = require('path')
   , bodyParser = require('body-parser')
   , favicon = require('serve-favicon')
-  , pg = require('pg');
+  , pg = require('pg')
+  , passport = require('passport')
+  , Sequelize = require('sequelize')
+  , session = require('express-session')
+  , hstore = require('pg-hstore');
 
 // configuration files
 var configServer = require('./lib/config/server');
@@ -17,6 +21,8 @@ var configServer = require('./lib/config/server');
 var app = express();
 var routes = require('./routes/index');
 var newUser = require('./routes/newuser')
+var signIn = require('./routes/signin')
+var LocalStrategy = require('passport-local').Strategy;
 app.set('port', configServer.httpPort);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -25,10 +31,14 @@ app.use(express.static(configServer.staticFolder));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: 'beauisstinky'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(morgan('dev'));
 app.use('/', routes);
 app.use('/newuser', newUser)
+app.use('/signin', signIn)
 // serve index
 require('./lib/routes').serveIndex(app, configServer.staticFolder);
 
@@ -115,4 +125,46 @@ client.connect(function(err){
   });
 
 });
+
+var sequelize = new Sequelize(connString)
+
+var User = sequelize.define('user', {
+  username: Sequelize.STRING,
+  password: Sequelize.STRING
+});
+
+User.sync()
+
+var auth = {}
+auth.localStrategy = new LocalStrategy({
+  username: 'username',
+  password: 'password'
+  },
+  function (username, password, done) {
+    var User = require('./User').User
+    User.find({username: username}).success(function(user){
+      if(!user){
+        return done(null, false, {message: 'User not found'});
+      }
+      if(!bcrypt.compareSync(user.password, password)){
+        return done(null, false, {message: 'Wrong Password'});
+      }
+      return done(null, {username: user.username})
+    });
+  }
+);
+
+auth.validPassword = function(password){
+  return bcrypt.compareSync(this.password, password)
+};
+
+auth.serializeUser = function(user, done){
+  done(null, user);
+};
+
+auth.deserializeUser = function(obj, done){
+  done(null, obj)
+};
+
 module.exports.app = app;
+module.exports = auth
