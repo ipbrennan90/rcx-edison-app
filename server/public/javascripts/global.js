@@ -50,10 +50,18 @@ $(document).ready(function(){
       type: "POST",
       url: "/newuser",
       data: {"newuser": {"username": name, "email": email, "password":password, "password-confirmation":password_confirmation}},
-      success: function(){
+      success: function(data){
+          // if(data){
+          //   alert(data.success)
+          // }
           $('.user-sign-up').fadeOut("easeOutCubic", function () {
             $('body').children(':not(.user-options)').toggleClass('blur');
           });
+      },
+      error: function(request, status, errorThrown){
+        if(errorThrown){
+          alert("ERROR!")
+        }
       }
     })
     e.preventDefault()
