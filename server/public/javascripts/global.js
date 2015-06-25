@@ -81,14 +81,14 @@ $(document).ready(function(){
       data: {"loginuser":{"username":username, "password":password}},
       statusCode: {
         512:function(){
-          $('.login-alert').append("<p><strong>Wrong </strong>password, please try again or sign up.")
+          $('.login-alert').html("<p><strong>Wrong </strong>password, please try again or sign up.")
           $('.login-alert').fadeIn("easeInCubic")
         },
         513:function(){
           $('.user-sign-in').fadeOut("easeOutCubic", function(){
             $('.user-sign-up').removeClass('blur');
             $('.user-sign-up').fadeIn("easeInCubic");
-            $('.alert').append("<p><strong>No </strong>user found, please sign up.</p>")
+            $('.alert').html("<p><strong>No </strong>user found, please sign up.</p>")
             $('.alert').fadeIn("easeInCubic")
             $('input#username').val($('input#username').val() + $('input#username_login').val())
           });
