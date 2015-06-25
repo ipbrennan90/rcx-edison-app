@@ -25,8 +25,11 @@ app.set('view engine', 'jade');
 
 app.use(session({
   secret: '530port90',
+  store: new (require('connect-pg-simple')(session))(),
   resave: true,
   saveUnitialized: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
+
   }))
 app.use(express.static(configServer.staticFolder));
 app.use(bodyParser.json());
