@@ -20,6 +20,7 @@ html
         button(type="button" class="sign-up btn btn-default")="Sign-Up"
       div(class="user-sign-up col-sm-4")
         form(name = "new-user" action="")
+          div(class="alert alert-danger col-sm-12" role="alert")
           div(class="form-group")
             input(type="text" id="username" name='user[name]' class="form-control" placeholder="Username")
           div(class="form-group")
@@ -33,6 +34,7 @@ html
             button(type="button" class="return-to-login btn btn-primary")="Sign-In"
       div(class="user-sign-in col-sm-4")
         form(name = "user-login" action = "")
+          div(class="login-alert alert alert-danger col-sm-12" role="alert")
           div(class="form-group")
             input(type="text" id="username_login" class="form-control"   name='username' placeholder="Username")
           div(class="form-group")
