@@ -18,37 +18,37 @@ router.get('/', function(req, res, next) {
           //stuff with message
           //client send
 
-  // var dgram = require("dgram");
-  //
-  // var server = dgram.createSocket("udp4");
-  //
-  // server.on("error", function (err) {
-  //   console.log("server error:\n" + err.stack);
-  //   server.close();
-  // });
-  //
-  // server.on("message", function (msg, rinfo) {
-  //   console.log("server got: " + msg + " from " +
-  //     rinfo.address + ":" + rinfo.port);
-  // });
-  //
-  // server.on("listening", function () {
-  //   var address = server.address();
-  //   console.log("server listening " +
-  //       address.address + ":" + address.port);
-  // });
-  //
-  // server.bind(5000);
-  // // server listening 0.0.0.0:41234
-  //
-  // // console.log(next);
-  //
-  // // res.send();/
+  var dgram = require("dgram");
+
+  var server = dgram.createSocket("udp4");
+
+  server.on("error", function (err) {
+    console.log("server error:\n" + err.stack);
+    server.close();
+  });
+
+  server.on("message", function (msg, rinfo) {
+    console.log("server got: " + msg + " from " +
+      rinfo.address + ":" + rinfo.port);
+  });
+
+  server.on("listening", function () {
+    var address = server.address();
+    console.log("server listening " +
+        address.address + ":" + address.port);
+  });
+
+  server.bind(2000);
+  // server listening 0.0.0.0:41234
+
+  // console.log(next);
+
+  // res.send();/
 
 }).post('/', function(req, res) {
   console.log(req.body.message)
   var PORT = 2000
-  var HOST = '192.168.1.2'
+  var HOST = '192.168.1.153'
 
   var dgram = require('dgram')
   var message = new Buffer('*OPEN* ' + req.body.message + '\n*CLOS*')

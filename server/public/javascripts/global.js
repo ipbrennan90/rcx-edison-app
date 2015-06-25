@@ -136,14 +136,13 @@ $(document).ready(function(){
 
         if(keyCode === 65){
           if(angle > 45){
-            angle -= 3;
+            angle -= 2;
           }
           setTimeout(function(){waitThenPost(angle);}, 10);
-          console.log("I'm going left!")
         }
         if(keyCode === 68){
           if(angle < 135){
-            angle += 3;
+            angle += 2;
           }
           setTimeout(function(){waitThenPost(angle);}, 10);
         }
@@ -172,13 +171,20 @@ $(document).ready(function(){
       }
 
     });
+    $('body').on('keyup', function keyUp(e){
+      var keyCode = e.keyCode;
+      if($.inArray(keyCode, keyCodeArray) != -1){
+        if(keyCode === 65 || keyCode == 68){
+          angle = 90
+          setTimeout(function(){waitThenPost(center);}, 500)
+
+        }
+      }
+    })
+
   }
 
 
 
-  // $('body').on('keyup', function keyUp(e){
-  //   var keyCode = e.keyCode;
-  //   if(decoder['keyUpDecoder'].hasOwnProperty(keyCode)) setTimeout(function(){waitThenPost(keyCode, 'keyUpDecoder');}, 10)
-  // })
 
 });

@@ -71,3 +71,22 @@ a {
 .sign-up-btn-group {
   margin-left: 33%;
 }
+.w{
+  margin-bottom: 0px;
+  margin-left: 33px;
+  margin-top: 307px;
+}
+.controls{
+  position: fixed;
+  top: 0.8%;
+  width: 8%;
+}
+
+.w {
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.a {
+  width: 33%;
+}
