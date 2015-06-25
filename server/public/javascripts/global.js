@@ -28,7 +28,7 @@ $(document).ready(function(){
   $('body').children(':not(.user-options)').toggleClass('blur');
   $('.user-sign-up').hide();
   $('.user-sign-in').hide();
-  $('#canvas-video').hide();
+  $('canvas').css('display', 'none');
   $('.sign-up').on('click', function () {
     $('.user-options').fadeOut("easeOutCubic", function(){
       $('.user-sign-up').toggleClass('blur');
@@ -52,11 +52,13 @@ $(document).ready(function(){
       url: "/newuser",
       data: {"newuser": {"username": name, "email": email, "password":password, "password-confirmation":password_confirmation}},
       success: function(data){
-          // if(data){
-          //   alert(data.success)
-          // }
+          if(data){
+            alert(data.success)
+          }
           $('.user-sign-up').fadeOut("easeOutCubic", function () {
             $('body').children(':not(.user-options)').toggleClass('blur');
+            $('canvas').fadeIn("easeInCubic")
+            enableKeys()
           });
       },
       error: function(request, status, errorThrown){
@@ -90,19 +92,11 @@ $(document).ready(function(){
         }
       },
       success: function(data){
-        if(data){
-          alert(data.success)
-        }
         $('.user-sign-in').fadeOut("easeOutCubic", function () {
-          $('body').children(':not(.user-options)').toggleClass('blur');
+          $('body').children(':not(.user-options)').removeClass('blur');
+          $('canvas').fadeIn("easeInCubic")
+          enableKeys()
         });
-      },
-      error: function(request, status, errorThrown){
-        if(errorThrown){
-          if(errorThrown == "Insufficient Storage"){
-            alert("Your Dad didn't love you, make an account")
-          }
-        }
       }
     });
     e.preventDefault()
@@ -110,6 +104,7 @@ $(document).ready(function(){
 
   $('.return-to-login').on('click', function(){
     $('.user-sign-up').fadeOut("easeOutCubic", function(){
+      $('.user-sign-in').removeClass('blur')
       $('.user-sign-in').fadeIn("easeInCubic");
     });
   });
@@ -126,8 +121,9 @@ $(document).ready(function(){
     });
 
   };
-  if(login == true){
-    console.log("hey")
+
+
+  var enableKeys = function(){
     $('body').on("keydown", function keyDown(e){
 
       var keyCode = e.keyCode;
@@ -174,6 +170,7 @@ $(document).ready(function(){
 
     });
   }
+
 
 
   // $('body').on('keyup', function keyUp(e){

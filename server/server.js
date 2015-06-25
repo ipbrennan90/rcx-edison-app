@@ -8,7 +8,8 @@ var childProcess = require('child_process')
   , path = require('path')
   , bodyParser = require('body-parser')
   , favicon = require('serve-favicon')
-  , pg = require('pg');
+  , pg = require('pg')
+  , session = require('express-session');
 
 // configuration files
 var configServer = require('./lib/config/server');
@@ -22,6 +23,7 @@ app.set('port', configServer.httpPort);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(session({secret: '530port90'}))
 app.use(express.static(configServer.staticFolder));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,6 +41,13 @@ http.createServer(app).listen(app.get('port'), function () {
   console.log('HTTP server listening on port ' + app.get('port'));
 });
 
+var sess;
+app.get('/', function(req, res){
+  sess=req.session;
+  sess.email;
+  sess.username;
+  
+})
 /// Video streaming section
 // Reference: https://github.com/phoboslab/jsmpeg/blob/master/stream-server.js
 

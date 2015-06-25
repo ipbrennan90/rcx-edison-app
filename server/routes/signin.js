@@ -1,14 +1,17 @@
-var express = require('express'),
-    router = express.Router(),
-    pg = require('pg'),
-    connString = "postgres:@localhost/rcx",
-    client = new pg.Client(connString),
-    bcrypt = require('bcrypt');
+var express = require('express')
+    , router = express.Router()
+    , pg = require('pg')
+    , connString = "postgres:@localhost/rcx"
+    , client = new pg.Client(connString)
+    , bcrypt = require('bcrypt')
+    , session = require('express-session')
+    , bodyParser = require('body-parser');
 
 
 var connString = "postgres:@localhost/rcx";
-
+var sess;
 router.post('/', function(req, res, next){
+  sess=req.session;
   var results = []
   console.log(req.body)
   var username = req.body['loginuser[username]']
@@ -23,7 +26,8 @@ router.post('/', function(req, res, next){
       done();
       if(results.length != 0){
         if(bcrypt.compareSync(password, results[0]['passhash'])){
-          res.send(200, {success: results[0].username})
+          sess.username = username
+          res.send(200, {success: sess.username})
         }else{
           res.send(512, {error: "Wrong Password"})
         }
