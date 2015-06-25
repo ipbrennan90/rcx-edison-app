@@ -8,8 +8,7 @@
 
 $(document).ready(function(){
   var center = 90
-  var angleR = 90
-  var angleL = 90
+  var angle = 90
   var throttle = 1530
   var keyCodeArray = [87, 65, 83, 68, 69, 81]
   var wsUrl = 'ws://edison.local:8084/';
@@ -136,22 +135,21 @@ $(document).ready(function(){
       if($.inArray(keyCode, keyCodeArray) != -1){
 
         if(keyCode === 65){
-          if(angleL > 45){
-            angleL -= 5;
+          if(angle > 45){
+            angle -= 3;
           }
-          setTimeout(function(){waitThenPost(angleL);}, 10);
+          setTimeout(function(){waitThenPost(angle);}, 10);
           console.log("I'm going left!")
         }
         if(keyCode === 68){
-          if(angleR < 135){
-            angleR += 5;
+          if(angle < 135){
+            angle += 3;
           }
-          setTimeout(function(){waitThenPost(angleR);}, 10);
+          setTimeout(function(){waitThenPost(angle);}, 10);
         }
         if(keyCode === 69){
           setTimeout(function(){waitThenPost(center);}, 10);
-          angleR = center
-          angleL = center
+          angle = center
         }
         if(keyCode === 81){
           throttle = 1530;
